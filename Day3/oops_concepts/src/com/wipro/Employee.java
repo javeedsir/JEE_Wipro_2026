@@ -2,9 +2,9 @@ package com.wipro;
 
 public class Employee extends Object {// POJO or Bean or Entity class
 	
-	private int eid;
-	private String ename;
-	private double salary;
+	 static int eid;
+	  static String ename;
+	 static double salary;
 	
 	public Employee() {
 		super(); //

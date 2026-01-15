@@ -7,10 +7,10 @@ public class Main {
 
 	Employee e1 =	new Employee();
 	
-			e1.setEid(112);
-			e1.setEname("king"); 
-			e1.setSalary(30000);
-			
+	e1.setEid(112);
+	e1.setEname("king");
+	e1.setSalary(30000);
+	
 			System.out.println(e1.getEid() +" "+ e1.getEname()+" "+e1.getSalary());
 		
 			e1.setSalary(45000);
@@ -43,8 +43,11 @@ public class Main {
 		
 System.out.println(e3.getEid() +" "+ e3.getEname()+" "+e3.getSalary());
 			
+
+System.out.println(e1.getEid() +" "+ e1.getEname()+" "+e1.getSalary());	
+
 		
-		
+System.out.println(Employee.eid +" "+Employee.ename);
 		
 		
 		
