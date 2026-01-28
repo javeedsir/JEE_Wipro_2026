@@ -1,0 +1,46 @@
+mysql> select  E.eid , E.ename  , M.eid , M.ename from  Employee E  , Employee M  where E.mid = M.eid;
++-----+--------+-----+-------+
+| eid | ename  | eid | ename |
++-----+--------+-----+-------+
+| 102 | Smith  | 101 | King  |
+| 103 | Ford   | 101 | King  |
+| 104 | Tom    | 102 | Smith |
+| 105 | Scott  | 102 | Smith |
+| 106 | Jerry  | 103 | Ford  |
+| 107 | Ravi   | 103 | Ford  |
+| 108 | Adam   | 101 | King  |
+| 109 | javeed | 101 | King  |
++-----+--------+-----+-------+
+8 rows in set (0.00 sec)
+
+mysql> select  E.eid , E.mid , M.eid , M.mid  from  Employee E  , Employee M  where E.mid = M.eid;
++-----+------+-----+------+
+| eid | mid  | eid | mid  |
++-----+------+-----+------+
+| 102 |  101 | 101 | NULL |
+| 103 |  101 | 101 | NULL |
+| 104 |  102 | 102 |  101 |
+| 105 |  102 | 102 |  101 |
+| 106 |  103 | 103 |  101 |
+| 107 |  103 | 103 |  101 |
+| 108 |  101 | 101 | NULL |
+| 109 |  101 | 101 | NULL |
++-----+------+-----+------+
+8 rows in set (0.00 sec)
+
+mysql> e.ename  , e.salary , m.ename , m.salary  from Employee E , Employee M where  E.mid = M.eid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'e.ename  , e.salary , m.ename , m.salary  from Employee E , Employee M where  E.' at line 1
+mysql> select e.ename  , e.salary , m.ename , m.salary  from Employee E , Employee M where  E.mid = M.eid;
++--------+----------+-------+----------+
+| ename  | salary   | ename | salary   |
++--------+----------+-------+----------+
+| Smith  | 45000.00 | King  | 50000.00 |
+| Ford   | 40000.00 | King  | 50000.00 |
+| Tom    | 30000.00 | Smith | 45000.00 |
+| Scott  | 35000.00 | Smith | 45000.00 |
+| Jerry  | 25000.00 | Ford  | 40000.00 |
+| Ravi   | 22000.00 | Ford  | 40000.00 |
+| Adam   | 47000.00 | King  | 50000.00 |
+| javeed | 47000.00 | King  | 50000.00 |
++--------+----------+-------+----------+
+8 rows in set (0.00 sec)

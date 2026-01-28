@@ -1,0 +1,415 @@
+
+
+mysql>
+mysql>
+mysql>
+mysql> select  salary from Employee where ename = 'Tom';
++----------+
+| salary   |
++----------+
+| 30000.00 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary > (SELECT salary from Employee where ename = 'Tom');
++-----+--------+----------+-----------+
+| eid | ename  | salary   | job       |
++-----+--------+----------+-----------+
+| 101 | King   | 50000.00 | President |
+| 102 | Smith  | 45000.00 | Manager   |
+| 103 | Ford   | 40000.00 | Manager   |
+| 105 | Scott  | 35000.00 | Developer |
+| 108 | Adam   | 47000.00 | Analyst   |
+| 109 | javeed | 47000.00 | Manager   |
++-----+--------+----------+-----------+
+6 rows in set (0.00 sec)
+
+mysql>  (SELECT salary from Employee where ename = 'Tom');
++----------+
+| salary   |
++----------+
+| 30000.00 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary > 30000.00;
++-----+--------+----------+-----------+
+| eid | ename  | salary   | job       |
++-----+--------+----------+-----------+
+| 101 | King   | 50000.00 | President |
+| 102 | Smith  | 45000.00 | Manager   |
+| 103 | Ford   | 40000.00 | Manager   |
+| 105 | Scott  | 35000.00 | Developer |
+| 108 | Adam   | 47000.00 | Analyst   |
+| 109 | javeed | 47000.00 | Manager   |
++-----+--------+----------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Dept;
++-----+-------------+-----------+
+| dno | dname       | location  |
++-----+-------------+-----------+
+|  10 | Development | Banglore  |
+|  20 | Testing     | Chennai   |
+|  30 | HR          | Mumbai    |
+|  40 | Operation   | Hyderabad |
+|  50 | Sales       | Delhi     |
++-----+-------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Employee;
++-----+--------+----------+------+-----------+------------+------+------+
+| Eid | EName  | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+--------+----------+------+-----------+------------+------+------+
+| 101 | King   | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith  | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 103 | Ford   | 40000.00 | NULL | Manager   | 2022-04-15 |  101 |   20 |
+| 104 | Tom    | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott  | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 106 | Jerry  | 25000.00 | 3000 | Tester    | 2025-03-26 |  103 |   20 |
+| 107 | Ravi   | 22000.00 | 4000 | Tester    | 2025-03-25 |  103 |   20 |
+| 108 | Adam   | 47000.00 | NULL | Analyst   | 2024-01-01 |  101 |   30 |
+| 109 | javeed | 47000.00 | NULL | Manager   | 2024-01-01 |  101 |   40 |
+| 110 | anil   |     NULL | NULL | NULL      | 2024-01-19 | NULL | NULL |
++-----+--------+----------+------+-----------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> (select dno from Dept where location = 'Banglore');
++-----+
+| dno |
++-----+
+|  10 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select * from Employee  where dno = (select dno from Dept where location = 'Banglore');
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 104 | Tom   | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary < (SELECT salary from Employee where ename = 'Tom');
++-----+-------+----------+--------+
+| eid | ename | salary   | job    |
++-----+-------+----------+--------+
+| 106 | Jerry | 25000.00 | Tester |
+| 107 | Ravi  | 22000.00 | Tester |
++-----+-------+----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary >= (SELECT salary from Employee where ename = 'Tom');
++-----+--------+----------+-----------+
+| eid | ename  | salary   | job       |
++-----+--------+----------+-----------+
+| 101 | King   | 50000.00 | President |
+| 102 | Smith  | 45000.00 | Manager   |
+| 103 | Ford   | 40000.00 | Manager   |
+| 104 | Tom    | 30000.00 | Developer |
+| 105 | Scott  | 35000.00 | Developer |
+| 108 | Adam   | 47000.00 | Analyst   |
+| 109 | javeed | 47000.00 | Manager   |
++-----+--------+----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary != (SELECT salary from Employee where ename = 'Tom');
++-----+--------+----------+-----------+
+| eid | ename  | salary   | job       |
++-----+--------+----------+-----------+
+| 101 | King   | 50000.00 | President |
+| 102 | Smith  | 45000.00 | Manager   |
+| 103 | Ford   | 40000.00 | Manager   |
+| 105 | Scott  | 35000.00 | Developer |
+| 106 | Jerry  | 25000.00 | Tester    |
+| 107 | Ravi   | 22000.00 | Tester    |
+| 108 | Adam   | 47000.00 | Analyst   |
+| 109 | javeed | 47000.00 | Manager   |
++-----+--------+----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Employee  where dno = (select dno from Dept where location = 'Banglore');
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 104 | Tom   | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+4 rows in set (0.00 sec)
+
+mysql>  (select dno from Dept where location = 'Banglore' OR location =  'Hyderabad');
++-----+
+| dno |
++-----+
+|  10 |
+|  40 |
++-----+
+2 rows in set (0.00 sec)
+
+mysql> select * from Employee where dno  =  (select dno from Dept where location = 'Banglore' OR location =  'Hyderabad');
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from Employee where dno  IN  (select dno from Dept where location = 'Banglore' OR location =  'Hyderabad');
++-----+--------+----------+------+-----------+------------+------+------+
+| Eid | EName  | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+--------+----------+------+-----------+------------+------+------+
+| 101 | King   | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith  | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 104 | Tom    | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott  | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 109 | javeed | 47000.00 | NULL | Manager   | 2024-01-01 |  101 |   40 |
++-----+--------+----------+------+-----------+------------+------+------+
+5 rows in set (0.01 sec)
+
+mysql> (select salary from Employee where  ename IN ('Tom','Jerry'));
++----------+
+| salary   |
++----------+
+| 30000.00 |
+| 25000.00 |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Employee where salary > (select salary from Employee where  ename IN ('Tom','Jerry'));
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from Employee where salary  =ANY (select salary from Employee where  ename IN ('Tom','Jerry'));
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 104 | Tom   | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 106 | Jerry | 25000.00 | 3000 | Tester    | 2025-03-26 |  103 |   20 |
++-----+-------+----------+------+-----------+------------+------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from Employee where salary  >ANY (select salary from Employee where  ename IN ('Tom','Jerry'));
++-----+--------+----------+------+-----------+------------+------+------+
+| Eid | EName  | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+--------+----------+------+-----------+------------+------+------+
+| 101 | King   | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith  | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 103 | Ford   | 40000.00 | NULL | Manager   | 2022-04-15 |  101 |   20 |
+| 104 | Tom    | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott  | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 108 | Adam   | 47000.00 | NULL | Analyst   | 2024-01-01 |  101 |   30 |
+| 109 | javeed | 47000.00 | NULL | Manager   | 2024-01-01 |  101 |   40 |
++-----+--------+----------+------+-----------+------------+------+------+
+7 rows in set (0.01 sec)
+
+mysql> select * from Employee where salary  <ANY (select salary from Employee where  ename IN ('Tom','Jerry'));
++-----+-------+----------+------+--------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job    | DOJ        | Mid  | dno  |
++-----+-------+----------+------+--------+------------+------+------+
+| 106 | Jerry | 25000.00 | 3000 | Tester | 2025-03-26 |  103 |   20 |
+| 107 | Ravi  | 22000.00 | 4000 | Tester | 2025-03-25 |  103 |   20 |
++-----+-------+----------+------+--------+------------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Employee where salary  =ALL (select salary from Employee where  ename IN ('Tom','Jerry'));
+Empty set (0.00 sec)
+
+mysql> select * from Employee where salary  >ALL (select salary from Employee where  ename IN ('Tom','Jerry'));
++-----+--------+----------+------+-----------+------------+------+------+
+| Eid | EName  | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+--------+----------+------+-----------+------------+------+------+
+| 101 | King   | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith  | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 103 | Ford   | 40000.00 | NULL | Manager   | 2022-04-15 |  101 |   20 |
+| 105 | Scott  | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 108 | Adam   | 47000.00 | NULL | Analyst   | 2024-01-01 |  101 |   30 |
+| 109 | javeed | 47000.00 | NULL | Manager   | 2024-01-01 |  101 |   40 |
++-----+--------+----------+------+-----------+------------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Employee where salary  <ALL (select salary from Employee where  ename IN ('Tom','Jerry'));
++-----+-------+----------+------+--------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job    | DOJ        | Mid  | dno  |
++-----+-------+----------+------+--------+------------+------+------+
+| 107 | Ravi  | 22000.00 | 4000 | Tester | 2025-03-25 |  103 |   20 |
++-----+-------+----------+------+--------+------------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary >= (SELECT salary from Employee where ename = 'Tom')  AND  job = (select job from Employee where  ename = 'scott');
++-----+-------+----------+-----------+
+| eid | ename | salary   | job       |
++-----+-------+----------+-----------+
+| 104 | Tom   | 30000.00 | Developer |
+| 105 | Scott | 35000.00 | Developer |
++-----+-------+----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Employee where dno  IN                                                                                                                 (select dno from Dept where location =                                                                                                            (select location from Dept where dname = 'Development'));
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 104 | Tom   | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> (select sum(salary) from Employee Group By job where job = 'Tester');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where job = 'Tester')' at line 1
+mysql> (select sum(salary) from Employee  where job = 'Tester' Group by Job);
++-------------+
+| sum(salary) |
++-------------+
+|    47000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employee where salary > (select sum(salary) from Employee  where job = 'Tester' Group by Job);
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employee where salary > (select sum(salary) from Employee   Group by Job);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from Employee where salary >ANY (select sum(salary) from Employee   Group by Job);
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employee where salary >ANY (select sum(salary) from Employee   Group by Job order by job);
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employee where salary >ANY (select sum(salary) from Employee   Group by Job)  order by ename;
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
++-----+-------+----------+------+-----------+------------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from employee group by job ;
++-------------+
+| sum(salary) |
++-------------+
+|    50000.00 |
+|   132000.00 |
+|    65000.00 |
+|    47000.00 |
+|    47000.00 |
+|        NULL |
++-------------+
+6 rows in set (0.00 sec)
+
+mysql> select sum(salary) from employee group by job  having sum(salary) > (select salary from Employee where ename ='King') ;
++-------------+
+| sum(salary) |
++-------------+
+|   132000.00 |
+|    65000.00 |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select job, sum(salary) from employee group by job  having sum(salary) > (select salary from Employee where ename ='King') ;
++-----------+-------------+
+| job       | sum(salary) |
++-----------+-------------+
+| Manager   |   132000.00 |
+| Developer |    65000.00 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> update Employee set salary = salary +1000 where  eid = (select eid from Employee where job = 'Tester' );
+ERROR 1093 (HY000): You can't specify target table 'Employee' for update in FROM clause
+mysql> update Employee set salary = salary +1000 where  dno = (select dno from dept where location = 'Hyderabad');
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Employee;
++-----+--------+----------+------+-----------+------------+------+------+
+| Eid | EName  | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+--------+----------+------+-----------+------------+------+------+
+| 101 | King   | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith  | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 103 | Ford   | 40000.00 | NULL | Manager   | 2022-04-15 |  101 |   20 |
+| 104 | Tom    | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott  | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 106 | Jerry  | 25000.00 | 3000 | Tester    | 2025-03-26 |  103 |   20 |
+| 107 | Ravi   | 22000.00 | 4000 | Tester    | 2025-03-25 |  103 |   20 |
+| 108 | Adam   | 47000.00 | NULL | Analyst   | 2024-01-01 |  101 |   30 |
+| 109 | javeed | 48000.00 | NULL | Manager   | 2024-01-01 |  101 |   40 |
+| 110 | anil   |     NULL | NULL | NULL      | 2024-01-19 | NULL | NULL |
++-----+--------+----------+------+-----------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Dept;
++-----+-------------+-----------+
+| dno | dname       | location  |
++-----+-------------+-----------+
+|  10 | Development | Banglore  |
+|  20 | Testing     | Chennai   |
+|  30 | HR          | Mumbai    |
+|  40 | Operation   | Hyderabad |
+|  50 | Sales       | Delhi     |
++-----+-------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from Employee where dno = (select dno from Dept where location = 'Hyderabad');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Employee;
++-----+-------+----------+------+-----------+------------+------+------+
+| Eid | EName | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+-------+----------+------+-----------+------------+------+------+
+| 101 | King  | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 103 | Ford  | 40000.00 | NULL | Manager   | 2022-04-15 |  101 |   20 |
+| 104 | Tom   | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 106 | Jerry | 25000.00 | 3000 | Tester    | 2025-03-26 |  103 |   20 |
+| 107 | Ravi  | 22000.00 | 4000 | Tester    | 2025-03-25 |  103 |   20 |
+| 108 | Adam  | 47000.00 | NULL | Analyst   | 2024-01-01 |  101 |   30 |
+| 110 | anil  |     NULL | NULL | NULL      | 2024-01-19 | NULL | NULL |
++-----+-------+----------+------+-----------+------------+------+------+
+9 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from Employee;
++-----+--------+----------+------+-----------+------------+------+------+
+| Eid | EName  | Salary   | Comm | Job       | DOJ        | Mid  | dno  |
++-----+--------+----------+------+-----------+------------+------+------+
+| 101 | King   | 50000.00 | NULL | President | 2020-12-01 | NULL |   10 |
+| 102 | Smith  | 45000.00 | NULL | Manager   | 2021-09-23 |  101 |   10 |
+| 103 | Ford   | 40000.00 | NULL | Manager   | 2022-04-15 |  101 |   20 |
+| 104 | Tom    | 30000.00 | 1500 | Developer | 2023-10-18 |  102 |   10 |
+| 105 | Scott  | 35000.00 | 1000 | Developer | 2023-12-25 |  102 |   10 |
+| 106 | Jerry  | 25000.00 | 3000 | Tester    | 2025-03-26 |  103 |   20 |
+| 107 | Ravi   | 22000.00 | 4000 | Tester    | 2025-03-25 |  103 |   20 |
+| 108 | Adam   | 47000.00 | NULL | Analyst   | 2024-01-01 |  101 |   30 |
+| 109 | javeed | 48000.00 | NULL | Manager   | 2024-01-01 |  101 |   40 |
+| 110 | anil   |     NULL | NULL | NULL      | 2024-01-19 | NULL | NULL |
++-----+--------+----------+------+-----------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select  eid , ename ,salary , job  from Employee  where  salary > (SELECT salary from Employee where ename = 'Tom')                            AND job = 'Manager';
++-----+--------+----------+---------+
+| eid | ename  | salary   | job     |
++-----+--------+----------+---------+
+| 102 | Smith  | 45000.00 | Manager |
+| 103 | Ford   | 40000.00 | Manager |
+| 109 | javeed | 48000.00 | Manager |
++-----+--------+----------+---------+
+3 rows in set (0.00 sec)
