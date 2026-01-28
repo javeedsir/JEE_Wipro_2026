@@ -2,7 +2,7 @@
 Constraints:
 -------------
 
-CREATE TABLE  Student (sid int unsigned  ,
+CREATE TABLE  Students (sid int unsigned  ,
 		       sname varchar(20)  NOT NULL,
 		       email  varchar(20)   UNIQUE ,
 		       fee   decimal   NOT NULL DEFAULT 0,
