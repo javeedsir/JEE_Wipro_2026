@@ -1,0 +1,46 @@
+
+
+PLSQL:
+
+
+create procedure  mypro
+begin
+
+
+	insert query;
+	update query;
+	delete query;
+	select query;
+	
+
+end;
+
+execute mypro(); // oracle database
+
+call  mypro(); // mysql database
+
+
+create function myfunc() 
+
+return int
+
+begin
+
+	any query;
+
+end;
+
+
+
+---------------------------
+
+
+
+
+
+  CallableStatement cstmt  = conn.prepareCall("{call  mypro() }");
+
+		cstmt.execute()
+
+
+	
