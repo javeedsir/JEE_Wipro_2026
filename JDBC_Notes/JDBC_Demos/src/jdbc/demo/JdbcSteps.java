@@ -8,8 +8,6 @@ import java.sql.Statement;
 public class JdbcSteps {
 
 	public static void main(String[] args) {
-
-
 		try {
 			DriverManager.registerDriver(new  com.mysql.cj.jdbc.Driver());
 			
@@ -24,7 +22,9 @@ public class JdbcSteps {
 			
 		//String updateQuery ="update Dept set location = 'Jaipur' , dname = 'L&D' where dno = 60";	
 			
-			String deleteQuery = "delete from Dept where dno = 60";
+			int dno = 60;
+			
+			String deleteQuery = "delete from Dept where dno ="+dno;
 			
 			int count =    stmt.executeUpdate(deleteQuery);
 			
@@ -37,8 +37,6 @@ public class JdbcSteps {
 			e.printStackTrace();
 		}
 		
-		
-
-	}
+		}
 
 }
