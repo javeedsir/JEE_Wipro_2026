@@ -22,14 +22,14 @@ function  f1(){
     fun2();
 
 
-    function  add(a , b =1){
+    function  add1(a , b =1){
 
             return a+b;
 
     }
 
 
-    result = add(5);
+    result = add1(5);
 
     console.log(result);
 

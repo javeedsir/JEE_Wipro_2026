@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+const myPromise = new Promise((resolve, reject) => {
+  // Simulate an asynchronous operation (e.g., fetching data)
+  setTimeout(() => {
+    const success = false; // Placeholder for operation outcome
+
+    if (success) {
+      resolve("Operation successful!"); // Marks promise as fulfilled
+    } else {
+      reject(new Error("Operation failed!")); // Marks promise as rejected
+    }
+  }, 1000);
+});
+
+
+myPromise
+  .then((value) => {
+    console.log(value); // Output: Operation successful!
+    // You can return another value or promise here for chaining
+  })
+  .catch((error) => {
+    console.error(error.message); // This runs if the promise is rejected
+  })
+  .finally(() => {
+    console.log("Promise settled (completed or failed).");
+  });
+
+
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>
