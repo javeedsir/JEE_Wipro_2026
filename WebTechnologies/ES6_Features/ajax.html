@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+                                   initial-scale=1.0">
+    <title>AJAX Example</title>
+    <script>
+        function fetchData() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && 
+                    this.status == 200) {
+                    document.getElementById("data")
+                        .innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "https://jsonplaceholder.typicode.com/users", true);
+            xhttp.send();
+        }
+    </script>
+
+    <script>
+
+        function fetch_data(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => console.log(json))
+        }
+
+        fetch_data();
+
+    </script>
+</head>
+
+<body>
+
+    <h2>Fetch Data</h2>
+    <button onclick="fetchData()">
+      Fetch Data</button>
+
+    <div id="data"></div>
+
+</body>
+
+</html>

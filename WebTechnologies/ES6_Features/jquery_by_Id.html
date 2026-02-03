@@ -1,0 +1,47 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>
+        Set the Value of an Input Field using jQuery
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+
+</head>
+
+<body>
+  
+        <button id="bid">Click</button>
+
+    <label>Input Box:</label>
+    <input type="text" value="" id="inputField" />
+    <br><br>
+
+    <button id="setText">
+        Set Value to Input Field
+    </button>
+
+    <script >
+        $("#setText").click(function(event) { 
+            $('#inputField').val("Welcome Geeks!"); 
+        }); 
+    </script>
+
+
+    <script>
+
+            $("#bid").click(function(event) { 
+                
+                    $("#bid").attr("style","background-color:red")
+        }); 
+
+    </script>
+
+
+
+</body>
+
+</html>
