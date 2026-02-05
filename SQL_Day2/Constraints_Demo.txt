@@ -84,13 +84,28 @@ CREATE TABLE Account (
 Notes on ALL Constrains:
 =============================
 
+	CREATE TABLE Student_Info (
+         sid integer(4) primary key  auto_increment ,
+       sname varchar(20) NOT NULL  DEFAULT 'NOT GIVEN',
+      dob  date default  '2026-02-02' ,
+      mobileno  integer(10) UNIQUE ,
+      gender varchar(20), 
+	fee  integer(5) ,
+	 CHECK ( gender IN ('M','F')),
+	CHECK  (fee BETWEEN 500 AND 50000)
+	
+	);
+
+
+
 
 mysql> CREATE TABLE Student (
     ->     sid integer(4) primary key  auto_increment ,
     ->  sname varchar(20) NOT NULL  DEFAULT 'NOT GIVEN',
-    ->  dob  date ,
+    ->  dob  date default current_date ,
     ->  mobileno  integer(10) UNIQUE ,
-    ->  gender varchar(20)  CHECK gender IN ('M','F')
+    ->  gender varchar(20)  CHECK gender IN ('M','F'),
+	
     ->
     ->
     ->  );
