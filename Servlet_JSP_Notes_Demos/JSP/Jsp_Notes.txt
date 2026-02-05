@@ -1,0 +1,160 @@
+JSP : Java Server Pages
+
+JSP: It is used to design/develop  dynamic web pages.
+
+HTML: It is used to design/develop  static web pages.
+
+JSP Advantages:
+
+In  Java Server Pages , we can write any HTML code and also any Java code.
+
+hello.jsp ----> web server ----> Hello_Servlet.java
+
+
+Servlet :  Java code(use HTML)
+
+JSP:  HTML (use java code) 
+
+
+JSP Elements/Tags:
+-----------------
+
+1.JSP Scriplet   <%   java code  %>
+2.JSP Declaration  <%!   java code %>
+3.JSP Directives  <%@ page  %>
+demo.jsp --> jsp compiler---> Demo_Servlet.java(Auto Generated Servlet) 
+				 ---> javac---> Demo_Servlet.class ----> execute
+
+
+4. JSP Expression  <%=  java expression%>
+5. EL Expression  ${username}
+	
+Scope variables:
+page  // set or get data with in a page  
+request // set or get data till request scope
+session  // set or get data till session is available
+application  // set or get data globally
+
+
+hello.jsp file 
+
+JSP Container/JSP Engine
+
+Hello_Servlet.java 
+// auto generated servlet
+
+import java.util.*;
+import java.io.*;
+public  class  Hello_Servlet  extends HttpServlet{
+
+
+
+static  double d = 1.9;
+String city = "hyderabad";
+
+
+static String name;
+	int  sid;
+	
+	public void m1(){
+		
+		
+	}
+
+
+
+
+
+	jspInit(){
+
+
+	}
+
+	jspService(HttpServletRequest request,HttpServletResponse response){
+
+
+
+		JspWriter  out;
+		HttpSession sesion;
+		ServletContext application;
+		ServletConfig config;
+ 		PageContext page;
+		Exception exception;
+		Object pageContext;
+
+			out.print("<h1>WELCOME TO JSP</h1>");
+
+			out.print("hi friends");
+				int x = 10;
+	
+				out.print(x);
+	
+
+				
+			out.print(session.getAttribute("name"));
+
+
+		response.setContentType("text/html");
+		
+			out.print(date);
+		
+			out.print("<h1>HELLO FRIENDS</h1>");
+
+				out.print("THIS IS MY TEXT");
+
+		int x =100;
+
+	String name = "javeed";
+	
+	out.print("X value is "+x);
+	
+	out.print("Welcome "+name);
+
+
+			
+	LocalDate  date =	LocalDate.now();
+
+		out.print(date);
+
+
+
+
+
+
+
+	
+		session.setAttribute("city","Mumbai");
+  		
+  		out.print(session.getAttribute("city"));
+ 
+
+		out.print( session.getAttribute("city"));
+
+
+
+		List  list = new ArrayList();
+
+Employee emp = (Employee)   session.getAttribute("e1");
+
+	}
+
+
+	jspDestroy(){
+
+
+	}
+
+
+
+}
+
+
+
+-------------------------
+
+
+
+
+
+
+
