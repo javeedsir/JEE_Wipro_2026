@@ -1,0 +1,12 @@
+
+
+1.OOPs
+2. String and Arrays
+3. Collections 
+	ArrayList , HashSet , TreeSet , HashMap,TreeMap , Queue
+	Comparable , Comparator 
+4. JDBC 
+5. Functional Interface , Lambda Exp , Stram api (Java 8 features)
+6. POJO class
+7. Layered architecture
+8. Junit basics
