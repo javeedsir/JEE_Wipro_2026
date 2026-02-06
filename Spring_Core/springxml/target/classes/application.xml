@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	
+	
+	
+		<bean  id="emp"   class="com.wipro.springxml.beans.Employee">
+		
+			<property name="eid" value="101"></property>
+			<property name="ename" value="King"></property>
+			<property name="salary" value="70000"></property>
+			<property name="address"  ref="a1"></property>
+		
+		
+		</bean>
+		
+		<bean id="a1"  class="com.wipro.springxml.beans.Address">
+		
+			<constructor-arg name="city" value="Pune"></constructor-arg>
+		
+		</bean>
+		
+		
+		
+		<!-- <bean  id="e2"   class="com.capgemini.springxml.beans.Employee">
+		
+			
+	<constructor-arg name="eid" value="102"></constructor-arg>
+	<constructor-arg name="ename" value="tom"></constructor-arg>
+	<constructor-arg name="salary" value="9000"></constructor-arg>
+		
+		</bean> -->
+	
+
+
+</beans>
