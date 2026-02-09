@@ -1,6 +1,7 @@
 package com.wipro.springmvc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,5 +43,27 @@ public class ProductController {
 		return "display"; // display.jsp
 
 	}
+	
+	
+		@RequestMapping(value="/show" , method = RequestMethod.POST)
+	  public String   readAndShowProduct(@ModelAttribute Product product , HttpSession session) {
+		  
+		  
+				session.setAttribute("product", product);
+			
+				return "display";
+		  
+	  }
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
